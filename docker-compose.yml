@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  servidor-web:
+    build: .
+    container_name: apache-container
+    ports:
+      - "8081:80"
+    networks:
+      - red-interna
+    volumes:
+      - .:/usr/local/apache2/htdocs/
+
+  terminal-test:
+    image: alpine
+    container_name: terminal-test
+    tty: true
+    networks:
+      - red-interna
+
+networks:
+  red-interna:
+    driver: bridge
